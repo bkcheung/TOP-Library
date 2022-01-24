@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+       <h1>Library</h1>
+       <h3>Books in Library</h3>
+       <div id = "library">Test</div>
+
+       <button type = button onclick= "openForm()">New Book</button>
+    
+       <div class="form-popup" id = "newBookForm">
+           <form class="form-container">
+               <h3>Add book to Library</h3>
+               <label for="title">Title</label>
+               <input type = "text" placeholder = "Enter book title" name = "title" required>
+               <label for="author">Author</label>
+               <input type = "text" placeholder = "Enter author" name = "author" required>
+               <label for="pages">Pages</label>
+               <input type = "text" placeholder = "Enter number of pages" name = "pages" required>
+               <label for="read">Check if book is read</label>
+               <input type = "checkbox" name = "read" value="Yes">
+               <input type = "submit">
+           </form>
+       </div>
+        
+        <script src="library.js" async defer></script>
+
+    </body>
+</html>
