@@ -13,7 +13,9 @@ function Book(title, author, pages, read){
 
 function addBookToLibrary(title, author, pages, read){
     const newBook = new Book(title, author, pages, read);
+    const index = myLibrary.length;
     myLibrary.push(newBook);
+    newBook.index = index;
     addToTable(newBook);
 }
 
@@ -32,13 +34,17 @@ function addToTable(newBook){
     newPages.innerHTML = newBook.pages;
     newRow.append(newPages);
 
-    const readStatus = document.createElement("td");
-    const bookRead = newBook.read ? 'Read':'Not read yest';
-    readStatus.innerHTML = bookRead;
-    newRow.append(readStatus);
+    const readTd = document.createElement("td");
+    const readStatus = document.createElement("BUTTON");
+    const bookRead = newBook.read ? 'Yes':'No';
+    const index = newBook.index;
+    readStatus.setAttribute('index', index);
+    readStatus.appendChild(document.createTextNode(bookRead));
+    readStatus.setAttribute("onclick", `toggleRead(${index})`);
+    readTd.append(readStatus);
+    newRow.append(readTd);
 
     const removeButton = document.createElement("BUTTON");
-    const index = myLibrary.length - 1;
     removeButton.setAttribute('index', index);
     removeButton.setAttribute("onclick", `removeBook(${index})`);
     removeButton.appendChild(document.createTextNode("❌"));
@@ -71,12 +77,21 @@ function removeBook(index) {
     myLibrary.splice(index,1)
     document.getElementById("libraryTable").innerHTML = '';
 
+    for(let i=0; i < myLibrary.length; i++){
+        console.log(myLibrary);
+        myLibrary[i].index = i; //update index attribute
+        addToTable(myLibrary[i]);
+    }
+}
+
+function toggleRead(index){
+    myLibrary[index].read = myLibrary[index].read ? false : true;
+    document.getElementById("libraryTable").innerHTML = '';
+
     for(let book in myLibrary){
         addToTable(myLibrary[book]);
     }
 }
-
-const library = document.getElementById("libraryTable");
 
 const book1 = addBookToLibrary('Name of the Wind', 'Patrick Rothfuss', 662, true);
 const book2 = addBookToLibrary('The Way of Kings', 'Brandon Sanderson', 1007, true);

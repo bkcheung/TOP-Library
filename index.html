@@ -9,32 +9,32 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-       <h1>Library</h1>
-       <h3>Books in Library</h3>
+       <h1>TOP Library</h1>
+       <h3>Books in Library:</h3>
        <table>
            <thead>
                <th>Title</th>
                <th>Author</th>
                <th>Pages</th>
-               <th>Read?</th>
+               <th>Complete?</th>
                <th>Remove</th>
            </thead>
            <tbody id = "libraryTable"></tbody>
        </table>
 
-       <button type = button onclick= "openForm()">New Book</button>
+       <button id = "newBook" type ="button" onclick= "openForm()">Add Book</button>
     
        <div class="form-popup" id = "newBookForm">
            <form action ="none" class="form-container">
                <h3>Add book to Library</h3>
                <label for="title">Title</label>
-               <input id = bookTitle type = "text" placeholder = "Enter book title" name = "title" required>
+               <input id = bookTitle type = "text" placeholder = "Enter book title" name = "title" required><br> 
                <label for="author">Author</label>
-               <input id = bookAuthor type = "text" placeholder = "Enter author" name = "author" required>
+               <input id = bookAuthor type = "text" placeholder = "Enter author" name = "author" required><br>
                <label for="pages">Pages</label>
-               <input id = bookPages type = "text" placeholder = "Enter number of pages" name = "pages" required>
+               <input id = bookPages type = "text" placeholder = "Enter number of pages" name = "pages" required><br>
                <label for="read">Check if book is read</label>
-               <input id = bookRead type = "checkbox" name = "read">
+               <input id = bookRead type = "checkbox" name = "read"><br>
                <button type="button" onclick="submitForm()">Submit</button>
            </form>
        </div>
