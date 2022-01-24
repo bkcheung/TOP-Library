@@ -13,46 +13,40 @@ function Book(title, author, pages, read){
 
 function addBookToLibrary(title, author, pages, read){
     const newBook = new Book(title, author, pages, read);
+    addToTable(newBook);
+    myLibrary.push(newBook);
+}
 
+function addToTable(newBook){
     const newRow = document.createElement("tr");
 
     const newTitle = document.createElement("td");
-    newTitle.innerHTML = title;
+    newTitle.innerHTML = newBook.title;
     newRow.append(newTitle);
 
     const newAuthor = document.createElement("td");
-    newAuthor.innerHTML = author;
+    newAuthor.innerHTML = newBook.author;
     newRow.append(newAuthor);
 
     const newPages = document.createElement("td");
-    newPages.innerHTML = pages;
+    newPages.innerHTML = newBook.pages;
     newRow.append(newPages);
 
     const readStatus = document.createElement("td");
-    const bookRead = read ? 'Read':'Not read yet';
+    const bookRead = newBook.read ? 'Read':'Not read yet';
     readStatus.innerHTML = bookRead;
     newRow.append(readStatus);
 
     document.getElementById("libraryTable").appendChild(newRow);
 
-    myLibrary.push(newBook);
-
 }
 
-function displayBook () {
-    const library = document.getElementById("libraryTable");
-
-    for(i=0; i < myLibrary.length; i++){
-        const info = myLibrary[i].info();
-        const row = library.insertRow(i);
-        row.innerHTML = info;
-    }
-
-    
-    
-}
 
 function openForm(){
+    document.getElementById("bookTitle").value = '';
+    document.getElementById("bookAuthor").value = '';
+    document.getElementById("bookPages").value = '';
+    document.getElementById("bookRead").checked = false;
     document.getElementById("newBookForm").style.display = "block";
 }
 
@@ -64,7 +58,7 @@ function submitForm(){
 
     addBookToLibrary(title, author, pages, read);
 
-    // displayBook();
+    // title = author = pages = '';
 
     document.getElementById("newBookForm").style.display = "none";
 }
@@ -73,5 +67,3 @@ const library = document.getElementById("libraryTable");
 
 const book1 = addBookToLibrary('Name of the Wind', 'Patrick Rothfuss', 662, true);
 const book2 = addBookToLibrary('The Way of Kings', 'Brandon Sanderson', 1007, true);
-
-// displayBook();
