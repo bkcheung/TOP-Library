@@ -13,8 +13,8 @@ function Book(title, author, pages, read){
 
 function addBookToLibrary(title, author, pages, read){
     const newBook = new Book(title, author, pages, read);
-    addToTable(newBook);
     myLibrary.push(newBook);
+    addToTable(newBook);
 }
 
 function addToTable(newBook){
@@ -33,9 +33,16 @@ function addToTable(newBook){
     newRow.append(newPages);
 
     const readStatus = document.createElement("td");
-    const bookRead = newBook.read ? 'Read':'Not read yet';
+    const bookRead = newBook.read ? 'Read':'Not read yest';
     readStatus.innerHTML = bookRead;
     newRow.append(readStatus);
+
+    const removeButton = document.createElement("BUTTON");
+    const index = myLibrary.length - 1;
+    removeButton.setAttribute('index', index);
+    removeButton.setAttribute("onclick", `removeBook(${index})`);
+    removeButton.appendChild(document.createTextNode("❌"));
+    newRow.append(removeButton);
 
     document.getElementById("libraryTable").appendChild(newRow);
 
@@ -57,10 +64,16 @@ function submitForm(){
     const read = document.getElementById("bookRead").checked;
 
     addBookToLibrary(title, author, pages, read);
-
-    // title = author = pages = '';
-
     document.getElementById("newBookForm").style.display = "none";
+}
+
+function removeBook(index) {
+    myLibrary.splice(index,1)
+    document.getElementById("libraryTable").innerHTML = '';
+
+    for(let book in myLibrary){
+        addToTable(myLibrary[book]);
+    }
 }
 
 const library = document.getElementById("libraryTable");
