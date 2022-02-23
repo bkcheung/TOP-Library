@@ -22,7 +22,7 @@
            <tbody id = "libraryTable"></tbody>
        </table>
 
-       <button id = "newBook" type ="button" onclick= "openForm()">Add Book</button>
+       <button id = "newBook" type ="button" onclick= "Library.openForm()">Add Book</button>
     
        <div class="form-popup" id = "newBookForm">
            <form action ="none" class="form-container">
@@ -35,7 +35,7 @@
                <input id = bookPages type = "text" placeholder = "Enter number of pages" name = "pages" required><br>
                <label for="read">Check if book is read</label>
                <input id = bookRead type = "checkbox" name = "read"><br>
-               <button type="button" onclick="submitForm()">Submit</button>
+               <button type="button" onclick="Library.submitForm()">Submit</button>
            </form>
        </div>
         
